@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProductCollection
+{
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+
+    }
+    public class ProductCRUD
+    {
+        private List<Product> products;
+        public ProductCRUD()
+        {
+           products = new List<Product>();
+        }
+        public void AddProduct(Product prod)
+        {
+            products.Add(prod);
+        }
+        public List<Product> GetProducts()
+        {
+            return products;
+        }
+        public void UpdateProduct(Product prod)
+        {
+            foreach (Product p in products) 
+            {
+                if(p.Id == prod.Id)
+                {
+                    p.Name = prod.Name;
+                    p.Price = prod.Price;
+                    break;
+                }
+            }
+        }
+        public void DeleteProduct(int id)
+        {
+            foreach (Product p in products)
+            {
+                if (p.Id == id)
+                {
+                    products.Remove(p);
+                    break;
+                }
+            }
+        }
+    }
+}
